@@ -1,0 +1,7 @@
+Performance File for Cold Call Assist Program
+Total Times  Called	Number of Flags	First Name	Last Name	UO ID	Email	Phonetic Spelling	Reveal Code	List of Dates
+5	2	Jaeger	Jochimsen	951xxxxxx	jaegerj@uoregon.edu	PHONETIC1	REAVEAL_CODE1	2022/01/17	2022/01/19	2022/01/19	
+4	2	Nick	Johnstone	951xxxxxx	nsj@uoregon.edu	PHONETIC4	REAVEAL_CODE4	2022/01/17	2022/01/19	2022/01/19	
+3	3	Stephen	Levekis	951xxxxxx	slevecki@uoregon.edu	PHONETIC5	REAVEAL_CODE5	2022/01/17	2022/01/18	2022/01/19	
+4	2	Kai	Xiong	951xxxxxx	kxiong@uoregon.edu	PHONETIC3	REAVEAL_CODE3	2022/01/18	2022/01/19	2022/01/19	2022/01/19	
+3	1	Mert	Yapucuoglu	951xxxxxx	merty@uoregon.edu	PHONETIC2	REAVEAL_CODE2	2022/01/17	2022/01/19	2022/01/19	
