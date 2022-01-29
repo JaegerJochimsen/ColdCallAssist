@@ -1,5 +1,7 @@
 # Cold Call System
-![Image](./Logo/IMG_7854.JPG)
+<p align="center">
+    <img src="./Logo/IMG_7854.JPG">
+</p>
 ## Install Instructions
 1. Clone Cold Call System: `git clone https://github.com/JaegerJochimsen/ColdCallAssist.git`
 ## Operation Instructions
