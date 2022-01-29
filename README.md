@@ -1,13 +1,33 @@
-### Cold Call System
+# Cold Call System
 ## Install Instructions
-1. Clone Cold Call System: `git clone https://github.com/JaegerJochimsen/CIS422_Project1.git`
-2. Navigate to the directory Cold_Call_Assist 
-3. 
-u can go to GitHub to download the whole repository on your
-computer. Simple way, just code this in your terminal:
-
-operation instructions
+1. Clone Cold Call System: `git clone https://github.com/JaegerJochimsen/ColdCallAssist.git`
+---
+## Operation Instructions
+### Initial Setup
+Create a roster file containing student information. 
+**Roster Requirements:**
+1. The roster must be a text file (.txt) with each line holding a single student's information.
+2. Each line will be tab-delimited and contain the following student information:
+*<First Name><tab><Last Name><tab><ID Number><tab><Email Address>(optional)<tab><Phonetic Spalling>*
+(see User Documentation/Manual for more)
+### Starting the System for the First Time
+1. From terminal navigate to ColdCallAssist directory.
+2. Execute the program `python3 ColdCall.py`.
+3. Select an initial roster via the file navigation window.
+4. Confirm the roster.
+5. The top bar should populate with student names; if this is the
+   case the system is up and running.
+### Subsequent System Usage (Same Roster)
+1. From terminal navigate to ColdCallAssist directory.
+2. Execute the program `python3 ColdCall.py`.
+### Subsequent System Usage (Modified Roster)
+The Cold Call Assist system supports the addition of new students to the initial roster, but not removal (see What's Next below). 
+### Subsequent System Usage (Using a New Roster)
+Reset the system
+### Resetting the System
+Dependencies
 file manifest
 list of known bugs
 troubleshooting instructions
 credits
+## What's Next
