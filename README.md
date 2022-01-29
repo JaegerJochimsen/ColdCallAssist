@@ -1,7 +1,6 @@
 # Cold Call System
 ## Install Instructions
 1. Clone Cold Call System: `git clone https://github.com/JaegerJochimsen/ColdCallAssist.git`
----
 ## Operation Instructions
 ### Initial Setup
 Create a roster file containing student information. 
@@ -23,7 +22,15 @@ Create a roster file containing student information.
 ### Subsequent System Usage (Modified Roster)
 The Cold Call Assist system supports the addition of new students to the initial roster, but not removal (see What's Next below). 
 ### Subsequent System Usage (Using a New Roster)
-Reset the system
+Reset the system in order to upload a new student roster.
+### System Controls
+| Keystroke       | Description    |
+|-----------------|----------------|
+| Right Arrow Key | Navigate Right |
+| Left Arrow Key  | Navigate Left  |
+| Comma Key <,>   | Mark Student Contribution |
+| Right Arrow Key | Navigate Right |
+| Right Arrow Key | Navigate Right |
 ### Resetting the System
 Dependencies
 file manifest
