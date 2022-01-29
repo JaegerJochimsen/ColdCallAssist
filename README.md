@@ -28,9 +28,10 @@ Reset the system in order to upload a new student roster.
 |-----------------|----------------|
 | Right Arrow Key | Navigate Right |
 | Left Arrow Key  | Navigate Left  |
-| Comma Key <,>   | Mark Student Contribution |
-| Right Arrow Key | Navigate Right |
-| Right Arrow Key | Navigate Right |
+| Comma Key ,   | Mark Student Contribution |
+| Period Key . | Flag Student |
+| Question Mark Key ? | Mark Student Absent |
+Close the interface window to exit the program.
 ### Resetting the System
 Dependencies
 file manifest
