@@ -33,6 +33,7 @@ Reset the system in order to upload a new student roster.
 | Question Mark Key ? | Mark Student Absent |
 | Close the Interface Window | Exit the Program|
 ### Resetting the System
+Click the "Reset" button on the right side of the top bar to reset the system.
 ## Dependencies
 The Cold Call Assist System relies on:
 1. [python3.X](https://www.python.org/downloads/) 
