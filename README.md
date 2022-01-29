@@ -37,8 +37,21 @@ Reset the system in order to upload a new student roster.
 The Cold Call Assist System relies on:
 1. [python3.X](https://www.python.org/downloads/) 
 2. tkinter 
-file manifest
-list of known bugs
-troubleshooting instructions
-credits
+## File Manifest
+*Software Files*
+1. Classroom.py
+2. ColdCall.py
+3. DataStream.py
+4. InstructorInterface.py
+5. Student.py
+*Data Files*
+1. test_roster.txt
+## Known Bugs and Fixes (see Programmer's Documentation, sec 7)
+1. *Mac OS* - Hidden roster confirmation window during initial roster import. The confirmation window must be brought up by clicking the python logo on the dock.
+2. *Mac OS* - Top Deck bar is unresponsive after startup. The user must click terminal window, then re-click the top-bar.
+2. *All Systems* - System crashes if there are less than 5 students in the class (conflicts with creation of internal data structures).
+## Credits
+"Software Engineering 10^th^ Edition" Ian Sommerville
 ## What's Next
+1. Added support for removal of students from a roster.
+2. Bug fixes for Mac OS.
