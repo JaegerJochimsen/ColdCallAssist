@@ -31,10 +31,12 @@ Reset the system in order to upload a new student roster.
 | Comma Key ,   | Mark Student Contribution |
 | Period Key . | Flag Student |
 | Question Mark Key ? | Mark Student Absent |
----
-Close the interface window to exit the program.
+| Close the Interface Window | Exit the Program|
 ### Resetting the System
-Dependencies
+## Dependencies
+The Cold Call Assist System relies on:
+1. [python3.X](https://www.python.org/downloads/) 
+2. tkinter 
 file manifest
 list of known bugs
 troubleshooting instructions
