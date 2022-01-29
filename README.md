@@ -52,8 +52,8 @@ The Cold Call Assist System relies on:
 2. *Mac OS* - Top Deck bar is unresponsive after startup. The user must click terminal window, then re-click the top-bar.
 2. *All Systems* - System crashes if there are less than 5 students in the class (conflicts with creation of internal data structures).
 ## Credits
-1. "Software Engineering 10th Edition" Ian Sommerville: UML reference and general Software methods.
-2. Dr. Anthony Hornof: initial SRS and project consultation.
+1. **"Software Engineering 10th Edition" Ian Sommerville:** UML reference and general Software methods.
+2. **Dr. Anthony Hornof:** initial SRS and project consultation.
 ## What's Next
 1. Added support for removal of students from a roster.
 2. Bug fixes for Mac OS.
