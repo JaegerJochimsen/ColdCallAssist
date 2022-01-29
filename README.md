@@ -31,7 +31,7 @@ Reset the system in order to upload a new student roster.
 | Comma Key ,   | Mark Student Contribution |
 | Period Key . | Flag Student |
 | Question Mark Key ? | Mark Student Absent |
-|-----------------|----------------|
+---
 Close the interface window to exit the program.
 ### Resetting the System
 Dependencies
