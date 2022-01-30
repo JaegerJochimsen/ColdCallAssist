@@ -1,9 +1,10 @@
 """
-    Created by Stephen Leveckis, Mert Yapucuoglu 1/12/2022
-    Creates self.window GUI for cold calling program
+File: InstructorInterface.py
+Created by Stephen Leveckis, Mert Yapucuoglu 1/12/2022
+Creates self.window GUI for cold calling program
 
-    Installs Requried:
-        Tkinter: sudo apt-get install python3.6-tk
+Installs Requried:
+    Tkinter: sudo apt-get install python3.6-tk
 
 Create and allow interaction with a GUI window using tkinter.
 
