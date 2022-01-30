@@ -26,6 +26,10 @@ class ColdCallSystem:
         (self.rosterStringList, self.isInitialBoot) = readRoster()    # Try to read the roster file, isInitialBoot is false if can read
         self.exitProgram = 0                                          # Will be checked after to determine quit condition
 
+################################################################################
+
+################################################################################
+
     def run(self):
         haveValidRoster = self._getCheckConfirmRosterFile()   # Call function to check roster validity, if not prompt the user
         if not haveValidRoster:                               # If the user cancels the file input prompt, quit
@@ -33,7 +37,9 @@ class ColdCallSystem:
         self._startDeckGUI()                                  # Create the top deck bar and manage the decks
         self._exitAndSave()                                   # Merge the decks and save the data
 
+################################################################################
 
+################################################################################
 
     def _getCheckConfirmRosterFile(self):
         # If the roster read return is a valid list, not an error mesage, return
@@ -67,6 +73,10 @@ class ColdCallSystem:
 
         return (not self.exitProgram)
 
+################################################################################
+
+################################################################################
+
     def _startDeckGUI(self):
         self.ourClassroom = Classroom(self.rosterStringList, 4)   # call Classroom module to create students on-deck/predeck/postdeck with roster
         ourGUI = InstructorInterface(self.rosterStringList)       # Create the cold-call GUI
@@ -75,11 +85,19 @@ class ColdCallSystem:
                           self.ourClassroom.markAbsent,
                           self.rosterModified)
 
+################################################################################
+
+################################################################################
+
     def _exitAndSave(self):
         save = self.ourClassroom.mergeDecksToList()   # save the current student info on the post-deck/pre-deck/on-deck
         writeToSavedBootRoster(save)                  # Write the Saved/Boot roster file
         writeToLogFile(save)                          # Write the log file
         updatePerforanceFile(save)                    # Upadte the Performance file
+
+################################################################################
+
+################################################################################
 
 if __name__ == "__main__":
     ColdCall = ColdCallSystem()

@@ -65,6 +65,8 @@ class Student(object):
         member variables are marked as private and can only be accessed through methods
 
     """
+################################################################################
+
     def __init__(self, first_name:str = None, last_name:str = None,
             id_num:str = None, email:str = None, phonetic:str = None,
             present:bool = True, spoken:bool = False, previousContributions:int = 0,
@@ -83,6 +85,10 @@ class Student(object):
         self.__previousFlags = previousFlags # number of flags throughout the term
         self.__previousAbsence = previousAbsences
 
+################################################################################
+
+################################################################################
+
     def toStrList(self)->list:
         """Produce list of strings representing the attributes of the Student object"""
         return [self.__firstName, self.__lastName, self.__idNum, self.__email,
@@ -90,40 +96,61 @@ class Student(object):
                 str(self.__flagCount), str(self.__currentContributions),
                 str(self.__previousContributions), str(self.__previousFlags), str(self.__previousAbsence)]
 
+################################################################################
+
+################################################################################
 
     def getSpoken(self)->bool:
         return self.__spoken
+
+################################################################################
+
+################################################################################
 
     def incrementFlag(self, n:int = 1)->None:
         self.__flagCount += n
         return None
 
+################################################################################
+
+################################################################################
+
     def setSpoken(self, status:bool)->None:
         self.__spoken = status
         return None
+
+################################################################################
+
+################################################################################
 
     def incrementContributions(self, n:int = 1)->None:
         self.__currentContributions += n
         return None
 
+################################################################################
+
+################################################################################
+
     def setPresent(self, status:bool)->None:
         self.__present = status
         return None
+
+################################################################################
+
+################################################################################
 
     def incrementAbsences(self, n:int=1)->None:
         self.__previousAbsence += n
         return None
 
+################################################################################
+
+################################################################################
+
     def __str__(self):
         return f"{self.__firstName} {self.__lastName}"
 
-def main():
-    """Testing"""
-    s = Student("Nick", "Johnstone", "951******", "nsj@gmail.com", "nook",
-            "848fsdfhkjhe8f9", "True", 5, 4)
-    print(s.toStrList())
+################################################################################
 
-if __name__ == "__main__":
-    main()
-
+################################################################################
 

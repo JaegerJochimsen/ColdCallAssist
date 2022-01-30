@@ -209,6 +209,9 @@ class InstructorInterface():
             self.canvas.create_text(((self.win_w*3) /4), 15, text=self.deck[3], fill = self.textColors[3], font = ('Helvetica 15 bold'), anchor='w')
             self.canvas.pack(fill=BOTH, expand=True)
 
+################################################################################
+
+################################################################################
 
     """
     Deletes all old text objects and replaces them with updated ones based on the
@@ -221,6 +224,9 @@ class InstructorInterface():
         self.canvas.create_text(self.win_w/2, 15, text=self.deck[2], fill = self.textColors[2], font = ('Helvetica 15 bold'), anchor='w')
         self.canvas.create_text(((self.win_w*3) /4), 15, text=self.deck[3], fill = self.textColors[3], font = ('Helvetica 15 bold'), anchor='w')
 
+################################################################################
+
+################################################################################
 
     """
     Increases highlight_counter with a bound that prevents it from
@@ -232,6 +238,10 @@ class InstructorInterface():
         else:
             self.highlight_counter = self.highlight_counter + 1
 
+################################################################################
+
+################################################################################
+
     """
     Decreases highlight_counter with a bound that prevents it from
     decreasing past zero, the leftmost name on our Deck.
@@ -242,6 +252,9 @@ class InstructorInterface():
         else:
             self.highlight_counter = self.highlight_counter - 1
 
+################################################################################
+
+################################################################################
 
     """
     Upon a <Left> Arrow Key press, updates highlight_counter and the corresponding data
@@ -266,6 +279,9 @@ class InstructorInterface():
         # that will display the text accordingly
         self._displayText()
 
+################################################################################
+
+################################################################################
 
     """
     Upon a <Right> Arrow Key press, updates highlight_counter and the corresponding data
@@ -290,6 +306,9 @@ class InstructorInterface():
         # that will display the text accordingly
         self._displayText()
 
+################################################################################
+
+################################################################################
 
     """
     Removes the currently highlighted student from the Deck
@@ -306,6 +325,9 @@ class InstructorInterface():
         # print("yeah")
         self._displayText()
 
+################################################################################
+
+################################################################################
 
     """
     Removes the currently highlighted student from the Deck,
@@ -323,6 +345,9 @@ class InstructorInterface():
         # (the removed student will no longer be shown on the Deck.
         self._displayText()
 
+################################################################################
+
+################################################################################
 
     """
     Upon the key input, will remove the student with the highlight from the list
@@ -337,6 +362,9 @@ class InstructorInterface():
         # (the removed student will no longer be shown on the Deck.
         self._displayText()
 
+################################################################################
+
+################################################################################
 
     """
     Start the GUI itself (nothing is displayed without mainloop()),
@@ -349,6 +377,9 @@ class InstructorInterface():
         self._topBar.lift()
         self._topBar.mainloop()
 
+################################################################################
+
+################################################################################
 
     """
     Opens a file explorer to input a roster file if one
@@ -360,6 +391,9 @@ class InstructorInterface():
         rosterFile = filedialog.askopenfilename(initialdir = "", title="Please choose your roster file")           #Take file path input from a pop-up window
         return rosterFile                                                                                          #return the path
 
+################################################################################
+
+################################################################################
 
     """
     Takes a deck parameter and saves  it to the self.deck to be used as a roster.
@@ -377,6 +411,9 @@ class InstructorInterface():
             self._showRosterModified()
         self._startGUI()
 
+################################################################################
+
+################################################################################
 
     """
     Called by insertDeck function when the top bar deck is created. This method
@@ -393,6 +430,9 @@ class InstructorInterface():
                 fill = "white", font = ('Helvetica 18 bold'), anchor='w')
         canvas.pack(fill=BOTH, expand=True)
 
+################################################################################
+
+################################################################################
 
     """
     Creates a window to show the user the input of the roster file they provided,
@@ -441,6 +481,9 @@ class InstructorInterface():
         self.scrollbar.config(command = self.student_list.yview)
         self._rosterConfirmWindow.mainloop()
 
+################################################################################
+
+################################################################################
 
     """
     Called by roster confirm window confirm button. If the user confirms the
@@ -451,6 +494,9 @@ class InstructorInterface():
         self._rosterConfirmWindow.destroy()
         self._topBar.destroy()
 
+################################################################################
+
+################################################################################
 
     """
     Called by roster confirm window cancel button. If the user rejects the
@@ -459,6 +505,10 @@ class InstructorInterface():
     def _rejectRoster(self):
         self._rosterConfirmWindow.destroy()
         self._topBar.destroy()
+
+################################################################################
+
+################################################################################
 
     """
     Called by: ColdCall.py
@@ -471,6 +521,9 @@ class InstructorInterface():
     def getRosterConfirmationResult(self):
         return self.rosterConfirmed
 
+################################################################################
+
+################################################################################
 
     """
     Called by: ColdCall.py
@@ -485,10 +538,12 @@ class InstructorInterface():
         self.canvas.create_text(5,15, text=message, fill = "white", font = ('Helvetica 18 bold'), anchor='w') #create a text with the errorMessage
         self.canvas.pack(fill=BOTH, expand=True)
 
+################################################################################
+
+################################################################################
 
     """
     Closes the GUI.
     """
-
     def killMain(self):
         self._topBar.destroy()
