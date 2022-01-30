@@ -12,22 +12,43 @@ Used By:
     ColdCall.py
 
 Members:
-    Member Name:        : Type          : Default Val           -> Description
+    Member Name:                : Type           : Default Val                -> Description
     ------------------------------------------------------------------------------------------------------------------------------------------
-    self._topBar            : tkinter       : Tk()                  -> the main tkinter window that will hold the names and accept input
+    self._topBar                : tkinter        : Tk()                       -> the main tkinter window that will hold the names and accept input
 
-    self.textColors    : list[string]  : ["white", "white",    -> The color array defining the color of text for each student name on the window
-                                           "white", "white"]
+    self.Canvas                 : tkinter.canvas : tkinter.canvas             -> The canvas in the topBar that will hold texts and buttons
 
-    self.deck           : list[Student] : deck(parameter)       -> a list of Student objects that show who are currently on deck
+    self._rosterConfirmWindow   : tkinter        : Tk()                       -> the roster confirmation window that will show the list and ask confirmation
 
-    self.roster         : list[Student] : None                  -> a list of Student that will be shown on initial file load for review
+    self.textColors             : list[string]   : ["white", "white",         -> The color array defining the color of text for each student name on the window
+                                                    "white", "white"]
 
-    self.moveToPost     : method        : moveToPost(parameter) -> a method given to the class on initialization, used to modify deck upon user input
+    self.screen_w               : int            : tk.winfo_screenwidth()     -> Contains the width of the user display
 
-    self.highlightList : list[bool]    : [True, False,         -> A list of bools showing which label is indexed on the GUI.
-                                           False, False]
+    self.screen_h               : int            : tk.winfo_screenheight()    -> Contains the height of the user display
 
+    self.deck                   : list[Student]  : deck(parameter)            -> a list of Student objects that show who are currently on deck
+
+    self.roster                 : list[Student]  : None                       -> a list of Student that will be shown on initial file load for review
+
+    self.moveToPost             : method         : moveToPost(parameter)      -> a method given to the class on insertDeck call from ColdCall.py to move student to deck after being chosen
+
+    self.markAbsent             : method         : markAbsent(parameter)      -> a method given to the class on insertDeck call from ColdCall.py to mark a student absent
+
+    self.resetSystem            : method         : resetSystem()              -> a method given to the class on insertDeck call from ColdCall.py to reset the system
+
+    self.highlightList          : list[bool]     : [True, False,              -> A list of bools showing which label is indexed on the GUI.
+                                                    False, False]
+
+    self.resetButton            : tk.button      : button                     -> A button in the _topBar that calls self.resetSystem() upon click
+
+    self.confirmButton          : tk.button      : button                     -> A button in the _rosterConfirmWindow that confirms the input roster
+
+    self.rejectButton           : tk.button      : button                     -> A button in the _rosterConfirmWindow that rejects the input roster
+
+    self.scrollbar              : tk.Scrollbar   : scrollbar                  -> A scrollbar in the _rosterConfirmWindow to help user navigate the list of student
+
+    self.student_list           : tk.Listbox     : [Listbox]                  -> A list in the _rosterConfirmWindow containing student names to be displayed
 
 Methods:
 
@@ -58,29 +79,29 @@ Methods:
     ----------------------------------------------------------------------------|-------------------------------------------------
     Declaration:    self._leftArrowKey(self, event)                             |   ->  None
                                                                                 |
-    Usage:          self._topBar.bind(<Left>)                                       |
+    Usage:          self._topBar.bind(<Left>)                                   |
                                                                                 |
     Description:    Upon user left arrow input, calls self._decreaseCounter()   |
-                    to change the highlighted index, changes the highlightList |
+                    to change the highlighted index, changes the highlightList  |
                     with the new index and calls self._displayText() to refresh |
                     the GUI window.                                             |
                                                                                 |
     ----------------------------------------------------------------------------|-------------------------------------------------
     Declaration:    self._rightArrowKey(self, event)                            |   ->  None
                                                                                 |
-    Usage:          self._topBar.bind(<Right>)                                      |
+    Usage:          self._topBar.bind(<Right>)                                  |
                                                                                 |
     Description:    Upon user right arrow input, calls self._increaseCounter()  |
-                    to change the highlighted index, changes the highlightList |
+                    to change the highlighted index, changes the highlightList  |
                     with the new index and calls self._displayText() to refresh |
                     the GUI window.                                             |
                                                                                 |
     ----------------------------------------------------------------------------|-------------------------------------------------
-    Declaration:    self._UpArrowKey(self, event)                               |   ->  None
+    Declaration:    self._chooseWithFlag(self, event)                           |   ->  None
                                                                                 |
-    Usage:          self._topBar.bind(<r>)                                          |
+    Usage:          self._topBar.bind(<.>)                                      |
                                                                                 |
-    Description:    Upon user r key input, finds the highlighed index and calls |
+    Description:    Upon user . key input, finds the highlighed index and calls |
                     self.moveToPost(index) which is a method passed on by init  |
                     from the ColdCall, which also imported it from the          |
                     Classroom.py in order to move the selected student from deck|
@@ -88,15 +109,63 @@ Methods:
                     up the flag for the selected student.                       |
                                                                                 |
     ----------------------------------------------------------------------------|-------------------------------------------------
-    Declaration:    self._DownArrowKey(self, event)                             |   ->  None
+    Declaration:    self._chooseWithoutFlag(self, event)                        |   ->  None
                                                                                 |
-    Usage:          self._topBar.bind(<e>)                                          |
+    Usage:          self._topBar.bind(<,>)                                      |
                                                                                 |
-    Description:    Upon user e key input, finds the highlighed index and calls |
+    Description:    Upon user, key input, finds the highlighed index and calls  |
                     self.moveToPost(index) which is a method passed on by init  |
                     from the ColdCall, which also imported it from the          |
                     Classroom.py in order to move the selected student from deck|
-                    to postdeck because  he/she has been cold called.           |
+                    to postdeck because he/she has been cold called.            |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self._chooseAbsent(self, event)                             |   ->  None
+                                                                                |
+    Usage:          self._topBar.bind(</>)                                      |
+                                                                                |
+    Description:    Upon user / key input, finds the highlighed index and calls |
+                    self.markAbsent(index) which is a method passed on by init  |
+                    from the ColdCall, which also imported it from the          |
+                    Classroom.py in order to mark the student as absent and     |
+                    remove them from all the decks for the class instance.      |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self._showRosterModified(self,message)                      |   ->  None
+                                                                                |
+    Usage:          self.insertDeck                                             |
+                                                                                |
+    Description:    Called by insertDeck function when the top bar deck is      |
+                    created. This method creates a window to notify the user    |
+                    that the save file has been modified from outside. It also  |
+                    accepts a new message in order to be used for other         |
+                    notifications.                                              |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self._confirmRoster(self)                                   |   ->  None
+                                                                                |
+    Usage:          self._rosterConfirmWindow.rejectButton click                |
+                                                                                |
+    Description:    Called by roster confirm window cancel button. If the       |
+                    user confirms the roster input we set rosterConfirmed       |
+                    variable to 1. Then we destroy both GUI windows.            |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self._rejectRoster(self)                                    |   ->  None
+                                                                                |
+    Usage:          self._rosterConfirmWindow.rejectButton click                |
+                                                                                |
+    Description:    Called by roster confirm window reject button. If the       |
+                    user rejects the roster input we destroy both GUI windows   |
+                    and prepare to re-prompt for a file.                        |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self._systemReset(self)                                     |   ->  None
+                                                                                |
+    Usage:          self.topBar.resetButton click                               |
+                                                                                |
+    Description:    Called by top bar if the reset button is pressed. Resets    |
+                    the saved roster and closes the program.                    |
                                                                                 |
     ----------------------------------------------------------------------------|-------------------------------------------------
 
@@ -134,17 +203,59 @@ Methods:
                     the GUI mainloop.                                           |
                                                                                 |
     ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self.createRosterConfirmWindow(self,deck)                   |   ->  None
+                                                                                |
+    Usage:          main() in ColdCall.py                                       |
+                                                                                |
+    Description:    This is called by the main to show the user the roster list |
+                    and ask for confirmation. Creates a window to show the user |
+                    the input of the roster file they provided, along with      |
+                    2 buttons, confirm and cancel, to choose if they want to    |
+                    use thisroster for the rest of the program.                 |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self.getRosterConfirmationResult(self)                      |   ->  boolean
+                                                                                |
+    Usage:          main() in ColdCall.py                                       |
+                                                                                |
+    Description:    Returns the confirmation result of the cofirmation window   |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self.changeMessage(self, message)                           |   ->  None
+                                                                                |
+    Usage:          main() in ColdCall.py and in many methods                   |
+                                                                                |
+    Description:    Overrides the text in the top bar and displayes the message |
+                    given.                                                      |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+    Declaration:    self.killMain(self)                                         |   ->  None
+                                                                                |
+    Usage:          main() in ColdCall.py                                       |
+                                                                                |
+    Description:    Destroys the top bar tkinter window, causing the program    |
+                    proceed.                                                    |
+                                                                                |
+    ----------------------------------------------------------------------------|-------------------------------------------------
+
 """
+# Import Tkinter library to create GUI windows
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
+
+# Importing sys to exit out of program if user terminates or resets
+import sys
+
+#Importing time use sleep to wait on notifications before closing
+import time
 
 class InstructorInterface():
     def __init__(self, deck=""):
 
         # The main GUI window object
         self._topBar = tk.Tk()
-        
+
         # The main GUI window title name
         self._topBar.title("Cold Call System")
 
@@ -201,17 +312,10 @@ class InstructorInterface():
         if not isinstance(self.deck,list):
             self.canvas.create_text(5,15, text=self.deck, fill = "white", font = ('Helvetica 18 bold'), anchor='w')
             self.canvas.pack(fill=BOTH, expand=True)
-        else:
-            # If the input is a valid deck,create the name labels and show them on top bar
-            self.canvas.create_text(5,15, text=self.deck[0], fill = self.textColors[0], font = ('Helvetica 15 bold'), anchor='w')
-            self.canvas.create_text(self.win_w/4, 15, text=self.deck[1], fill = self.textColors[1], font = ('Helvetica 15 bold'), anchor='w')
-            self.canvas.create_text(self.win_w/2, 15, text=self.deck[2], fill = self.textColors[2], font = ('Helvetica 15 bold'), anchor='w')
-            self.canvas.create_text(((self.win_w*3) /4), 15, text=self.deck[3], fill = self.textColors[3], font = ('Helvetica 15 bold'), anchor='w')
-            self.canvas.pack(fill=BOTH, expand=True)
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Deletes all old text objects and replaces them with updated ones based on the
@@ -223,10 +327,11 @@ class InstructorInterface():
         self.canvas.create_text(self.win_w/4, 15, text=self.deck[1], fill = self.textColors[1], font = ('Helvetica 15 bold'), anchor='w')
         self.canvas.create_text(self.win_w/2, 15, text=self.deck[2], fill = self.textColors[2], font = ('Helvetica 15 bold'), anchor='w')
         self.canvas.create_text(((self.win_w*3) /4), 15, text=self.deck[3], fill = self.textColors[3], font = ('Helvetica 15 bold'), anchor='w')
+        self.canvas.pack(side=tk.LEFT, fill=BOTH, expand=True)
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Increases highlight_counter with a bound that prevents it from
@@ -238,9 +343,9 @@ class InstructorInterface():
         else:
             self.highlight_counter = self.highlight_counter + 1
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Decreases highlight_counter with a bound that prevents it from
@@ -252,9 +357,9 @@ class InstructorInterface():
         else:
             self.highlight_counter = self.highlight_counter - 1
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Upon a <Left> Arrow Key press, updates highlight_counter and the corresponding data
@@ -279,9 +384,9 @@ class InstructorInterface():
         # that will display the text accordingly
         self._displayText()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Upon a <Right> Arrow Key press, updates highlight_counter and the corresponding data
@@ -306,9 +411,9 @@ class InstructorInterface():
         # that will display the text accordingly
         self._displayText()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Removes the currently highlighted student from the Deck
@@ -325,9 +430,9 @@ class InstructorInterface():
         # print("yeah")
         self._displayText()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Removes the currently highlighted student from the Deck,
@@ -345,9 +450,9 @@ class InstructorInterface():
         # (the removed student will no longer be shown on the Deck.
         self._displayText()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Upon the key input, will remove the student with the highlight from the list
@@ -362,9 +467,9 @@ class InstructorInterface():
         # (the removed student will no longer be shown on the Deck.
         self._displayText()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Start the GUI itself (nothing is displayed without mainloop()),
@@ -377,9 +482,9 @@ class InstructorInterface():
         self._topBar.lift()
         self._topBar.mainloop()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Opens a file explorer to input a roster file if one
@@ -387,13 +492,13 @@ class InstructorInterface():
     provided by errorMessage parameter on the screen.
     """
     def getRosterFileInput(self, errorMessage):
-        self.changeMessage(errorMessage)                                                        #add the errormessage to the window
+        self.changeMessage(errorMessage)                                                                           #add the errormessage to the window
         rosterFile = filedialog.askopenfilename(initialdir = "", title="Please choose your roster file")           #Take file path input from a pop-up window
         return rosterFile                                                                                          #return the path
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Takes a deck parameter and saves  it to the self.deck to be used as a roster.
@@ -401,38 +506,43 @@ class InstructorInterface():
     out of the deck. Refreshes the GUI window with the provided deck names with
     self._displayText(). And starts the GUI functionality with self._startGUI()
     """
-    def insertDeck(self, deck, moveToPost, markAbsent, rosterModified):
+    def insertDeck(self, deck, moveToPost, markAbsent, rosterModified, resetSystem):
+
         self.deck = deck
         self.moveToPost = moveToPost
         self.markAbsent = markAbsent
         self.rosterModified = rosterModified
-        self._displayText()
-        if self.rosterModified:
+        self.resetSystem = resetSystem                                # Accept the parameters to the class
+        self._displayText()                                           # Create the names on the top bar
+        self.resetButton = Button(self.canvas, text="Reset", command=self._systemReset) # Create the reset button on top Bar
+        self.resetButton.pack(side=tk.RIGHT)
+        if self.rosterModified:                                        # If the roster is modified, show notification
             self._showRosterModified()
-        self._startGUI()
+        self._startGUI()                                               # Start the GUI mainloop
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Called by insertDeck function when the top bar deck is created. This method
     creates a window to notify the user that the save file has been modified
-    from outside.
+    from outside. It also accepts a new message in order to be used for other
+    notifications.
     """
-    def _showRosterModified(self):
-        self.modificationNotification = Tk()
-        self.modificationNotification.title("Notification")
-        dimensions = "%dx%d+%d+%d" % (400, 60, self.screen_w*2/5, self.screen_h/3)
+    def _showRosterModified(self, message = "Roster changes detected."):
+        self.modificationNotification = Tk()                                        # Creates the notification window
+        self.modificationNotification.title("Notification")                         # Gives it a title
+        dimensions = "%dx%d+%d+%d" % (400, 60, self.screen_w*2/5, self.screen_h/3)  # Sets place and dimensions
         self.modificationNotification.geometry(dimensions)
-        canvas = Canvas(self.modificationNotification, width=50, height=50, bg="black")
-        canvas.create_text(5,15, text="Roster changes detected.",
+        canvas = Canvas(self.modificationNotification, width=50, height=50, bg="black") # Creates a canvas on the window
+        canvas.create_text(5,15, text=message,                                          # Creates the message text
                 fill = "white", font = ('Helvetica 18 bold'), anchor='w')
         canvas.pack(fill=BOTH, expand=True)
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Creates a window to show the user the input of the roster file they provided,
@@ -481,34 +591,34 @@ class InstructorInterface():
         self.scrollbar.config(command = self.student_list.yview)
         self._rosterConfirmWindow.mainloop()
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Called by roster confirm window confirm button. If the user confirms the
     roster input, we set rosterConfirmed to 1. And then destroy both GUI windows.
     """
     def _confirmRoster(self):
-        self.rosterConfirmed = 1
-        self._rosterConfirmWindow.destroy()
-        self._topBar.destroy()
+        self.rosterConfirmed = 1            # Sets the confirm boolean to 1
+        self._rosterConfirmWindow.destroy() # Kills the confirm window
+        self._topBar.destroy()              # Kills the top bar for refresh
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Called by roster confirm window cancel button. If the user rejects the
     roster input we destroy both GUI windows and prepare to re-ask.
     """
     def _rejectRoster(self):
-        self._rosterConfirmWindow.destroy()
-        self._topBar.destroy()
+        self._rosterConfirmWindow.destroy() # Kills the confirm window
+        self._topBar.destroy()              # Kills the top bar for refresh
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Called by: ColdCall.py
@@ -521,9 +631,9 @@ class InstructorInterface():
     def getRosterConfirmationResult(self):
         return self.rosterConfirmed
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
 
     """
     Called by: ColdCall.py
@@ -533,14 +643,28 @@ class InstructorInterface():
     Will be called by ColdCall.py in order to change the error message on the
     top window.
     """
-    def changeMessage(self,message):
-        self.canvas.delete("all")                                                                                  #Clear the canvas GUI
-        self.canvas.create_text(5,15, text=message, fill = "white", font = ('Helvetica 18 bold'), anchor='w') #create a text with the errorMessage
+    def changeMessage(self, message):
+        self.canvas.delete("all")                                                                                  # Clear the canvas GUI
+        self.canvas.create_text(5,15, text=message, fill = "white", font = ('Helvetica 18 bold'), anchor='w')      # Create a text with the errorMessage
         self.canvas.pack(fill=BOTH, expand=True)
 
-################################################################################
+###########################################################################
 
-################################################################################
+###########################################################################
+
+    """
+    Called by the reset button on the top bar to reset the roster save. It then
+    exits the program.
+    """
+    def _systemReset(self):
+        self._showRosterModified("Resetting the system")    # Display the message
+        time.sleep(1)                                       # Allow time for the user to understand the reset
+        self.resetSystem()                                  # Calls the method passed by Datastream to reset
+        sys.exit()                                          # Terminates the whole program
+
+###########################################################################
+
+###########################################################################
 
     """
     Closes the GUI.
