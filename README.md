@@ -7,7 +7,7 @@ Create a roster file containing student information.
 **Roster Requirements:**
 1. The roster must be a text file (.txt) with each line holding a single student's information.
 2. Each line will be tab-delimited and contain the following student information:
-*<First Name><tab><Last Name><tab><ID Number><tab><Email Address>(optional)<tab><Phonetic Spalling>*
+*<First Name><tab><Last Name><tab><ID Number><tab><Email Address>(optional)<tab><Phonetic Spelling>*
 (see User Documentation/Manual for more)
 ### Starting the System for the First Time
 1. From terminal navigate to ColdCallAssist directory.
